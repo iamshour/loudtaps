@@ -1,5 +1,5 @@
 //#region Import
-import { setUser } from "@/features/auth/slice"
+import { setCurrentSession } from "@/features/auth/slice"
 import useDispatch from "@/hooks/useDispatch"
 
 import Logo from "../common/logo"
@@ -11,7 +11,7 @@ const Topbar = () => {
 	const dispatch = useDispatch()
 
 	const signOut = () => {
-		dispatch(setUser(null))
+		dispatch(setCurrentSession(null))
 	}
 
 	return (

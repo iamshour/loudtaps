@@ -1,7 +1,7 @@
 //#region Import
 import AppLoader from "@/components/common/app-loader"
 import { lazy, Suspense } from "react"
-import { type RouteObject } from "react-router-dom"
+import { Navigate, type RouteObject } from "react-router-dom"
 
 // eslint-disable-next-line react-refresh/only-export-components
 const AuthRoute = lazy(() => import("@/features/auth/routes/auth-route"))
@@ -18,7 +18,12 @@ const publicRoutes: RouteObject[] = [
 				<AuthRoute />
 			</Suspense>
 		),
-		path: "/",
+		path: "/auth",
+	},
+	// Redirecting users always to 'auth' route
+	{
+		element: <Navigate to='/auth' />,
+		path: "*",
 	},
 ]
 

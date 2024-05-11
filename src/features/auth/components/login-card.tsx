@@ -3,22 +3,43 @@ import Button from "@/components/ui/button"
 import Form from "@/components/ui/form"
 import Input from "@/components/ui/input"
 import useDispatch from "@/hooks/useDispatch"
+import useSelector from "@/hooks/useSelector"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 
 import LoginSchema, { type LoginSchemaType } from "../schema/login-schema"
-import { toggleAuthStatus } from "../slice"
+import { setCurrentSession, toggleAuthStatus } from "../slice"
 //#endregion
 
 const LoginCard = () => {
 	const dispatch = useDispatch()
+
+	const { users } = useSelector(({ auth }) => auth)
 
 	const form = useForm<LoginSchemaType>({
 		resolver: zodResolver(LoginSchema),
 	})
 
 	const onFormSubmit = (data: LoginSchemaType) => {
-		console.log(data)
+		if (!data) return
+
+		// First, I'm going to check if user already exist in Mock users db (in local storage)
+		const userExist = users.find((entry) => entry.email === data.email)
+
+		// First, if user doesn't exit, we'll display UI error below email/username input field
+		if (!userExist) return form.setError("email", { message: "User doesn't exist. Try another email/username" })
+
+		// Second, if it exist but password was wrong, we'll display a UI error below password field
+		if (userExist?.password !== data.password) return form.setError("password", { message: "Passwrod incorrect" })
+
+		// Else, adding user to current session / Signing in
+		dispatch(
+			setCurrentSession({
+				email: data.email,
+				firstName: userExist.firstName,
+				lastName: userExist.lastName,
+			})
+		)
 	}
 
 	const goToSignupForm = () => dispatch(toggleAuthStatus("signup"))
@@ -46,7 +67,7 @@ const LoginCard = () => {
 						name='password'
 						render={({ field }) => (
 							<Form.Item label='Password'>
-								<Input placeholder='Enter your password' {...field} />
+								<Input placeholder='Enter your password' type='password' {...field} />
 							</Form.Item>
 						)}
 					/>

@@ -17,9 +17,9 @@ const AuthRoute = () => {
 			<div className='bg-muted hidden lg:block'>
 				<img
 					alt='Image'
-					className='h-full w-full object-cover dark:brightness-[0.2] dark:grayscale'
+					className='h-full max-h-screen w-full object-cover dark:brightness-[0.2] dark:grayscale'
 					height='1080'
-					src='/placeholder.svg'
+					src='/auth-bg.png'
 					width='1920'
 				/>
 			</div>

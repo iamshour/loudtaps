@@ -1,7 +1,7 @@
 //#region Import
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit"
 
-import type { User } from "./types"
+import type { Session, User } from "./types"
 //#endregion
 
 export type AuthSliceState = {
@@ -11,20 +11,33 @@ export type AuthSliceState = {
 	 */
 	authStatus: "login" | "signup"
 
-	user: null | User
+	currentSession: null | Session
+
+	users: User[]
 }
 
 const initialState: AuthSliceState = {
 	authStatus: "login",
-	user: null,
+	currentSession: null,
+	users: [],
 }
 
 const authSlice = createSlice({
 	initialState,
 	name: "auth",
 	reducers: {
-		setUser: (state, { payload }: PayloadAction<null | User>) => {
-			state.user = payload
+		registerUser: (state, { payload }: PayloadAction<User>) => {
+			const { password, ...currentSession } = payload
+
+			return {
+				...state,
+				currentSession,
+				users: [...state.users, { password, ...currentSession }],
+			}
+		},
+
+		setCurrentSession: (state, { payload }: PayloadAction<null | Session>) => {
+			state.currentSession = payload
 		},
 
 		toggleAuthStatus: (state, { payload }: PayloadAction<AuthSliceState["authStatus"]>) => {
@@ -33,6 +46,6 @@ const authSlice = createSlice({
 	},
 })
 
-export const { setUser, toggleAuthStatus } = authSlice.actions
+export const { registerUser, setCurrentSession, toggleAuthStatus } = authSlice.actions
 
 export default authSlice.reducer

@@ -7,9 +7,9 @@ import publicRoutes from "./public.routes"
 //#endregion
 
 const AppRoutes = () => {
-	const user = useSelector(({ auth }) => auth?.user)
+	const currentSession = useSelector(({ auth }) => auth?.currentSession)
 
-	const routes = user ? privateRoutes : publicRoutes
+	const routes = currentSession ? privateRoutes : publicRoutes
 
 	const element = useRoutes(routes)
 

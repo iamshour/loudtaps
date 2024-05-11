@@ -1,30 +1,27 @@
-/* eslint-disable perfectionist/sort-objects*/
+/* eslint-disable perfectionist/sort-objects,react-refresh/only-export-components*/
 
 //#region Import
-import type { RouteObject } from "react-router-dom"
-
-import NotFoundError from "@/components/common/notfound-error"
 import AppLayout from "@/components/layouts/app-layout"
 import { lazy } from "react"
+import { Navigate, type RouteObject } from "react-router-dom"
 
-// eslint-disable-next-line react-refresh/only-export-components
 const ArticlesListRoute = lazy(() =>
 	import("@/features/articles").then(({ ArticlesListRoute }) => ({ default: ArticlesListRoute }))
 )
 //#endregion
 
 /**
- * @description A List of Private-Only Route Objects (routes)  accessible only by authenticated users
+ * @description A List of Private-Only Route Objects (routes), accessible only by authenticated users
  */
 const privateRoutes: RouteObject[] = [
 	{
 		path: "/",
 		element: <AppLayout />,
 		children: [
-			{ element: <ArticlesListRoute />, path: "/articles" },
+			{ element: <ArticlesListRoute />, path: "/" },
 
-			// FALLBACK - 404 IF ROUTE DOES NOT EXIST
-			{ element: <NotFoundError />, path: "*" },
+			// FALLBACK - Redirect to Home IF ROUTE DOES NOT EXIST
+			{ element: <Navigate to='/' />, path: "*" },
 		],
 	},
 ]

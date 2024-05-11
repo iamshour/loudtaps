@@ -3,23 +3,41 @@ import Button from "@/components/ui/button"
 import Form from "@/components/ui/form"
 import Input from "@/components/ui/input"
 import useDispatch from "@/hooks/useDispatch"
+import useSelector from "@/hooks/useSelector"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 
 import SignupSchema, { type SignupSchemaType } from "../schema/signup-schema"
-import { toggleAuthStatus } from "../slice"
+import { registerUser, toggleAuthStatus } from "../slice"
 //#endregion
 
 const SignupCard = () => {
 	const dispatch = useDispatch()
+
+	const { users } = useSelector(({ auth }) => auth)
 
 	const form = useForm<SignupSchemaType>({
 		resolver: zodResolver(SignupSchema),
 	})
 
 	const onFormSubmit = (data: SignupSchemaType) => {
-		console.log(form)
-		console.log(data)
+		if (!data) return
+
+		// First, I'm going to check if user already exist in Mock users db (in local storage)
+		const userExist = users.find((entry) => entry.email === data.email)
+
+		// User already exist in mock db. Thus, can't create new user with same email
+		if (userExist) return form.setError("email", { message: "Email Already exist. Please use a different one" })
+
+		// Else, we'll add new user to new users db, and add him to the current session
+		dispatch(
+			registerUser({
+				email: data.email,
+				firstName: data.firstName,
+				lastName: data.lastName,
+				password: data.password,
+			})
+		)
 	}
 
 	const goToLogin = () => dispatch(toggleAuthStatus("login"))
