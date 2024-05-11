@@ -15,7 +15,7 @@ const Topbar = () => {
 	}
 
 	return (
-		<header className='sticky top-0 z-30 flex h-14 items-center justify-between gap-4 border-b bg-white sm:static sm:h-auto sm:border-0 sm:bg-transparent'>
+		<header className='flex h-16 items-center justify-between gap-4 rounded-lg bg-white p-4 shadow-sm'>
 			<Logo />
 
 			<Dropdown>
