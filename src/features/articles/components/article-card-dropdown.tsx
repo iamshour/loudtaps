@@ -2,6 +2,7 @@
 import Button from "@/components/ui/button"
 import Dropdown from "@/components/ui/dropdown"
 import LucideEllipsis from "~icons/lucide/ellipsis"
+import { useNavigate } from "react-router-dom"
 import { twMerge } from "tailwind-merge"
 
 import DeleteArticleDialog from "./delete-article-dialog"
@@ -17,6 +18,8 @@ interface ArticleCardDropdownProps {
 }
 
 const ArticleCardDropdown = ({ articleId, className }: ArticleCardDropdownProps) => {
+	const navigate = useNavigate()
+
 	return (
 		<Dropdown>
 			<Dropdown.Trigger asChild>
@@ -28,7 +31,7 @@ const ArticleCardDropdown = ({ articleId, className }: ArticleCardDropdownProps)
 				</Button>
 			</Dropdown.Trigger>
 			<Dropdown.Content align='end'>
-				<Dropdown.Item onClick={() => console.log(articleId)}>Edit</Dropdown.Item>
+				<Dropdown.Item onClick={() => navigate(`article/edit/${articleId}`)}>Edit</Dropdown.Item>
 
 				<Dropdown.Separator />
 
