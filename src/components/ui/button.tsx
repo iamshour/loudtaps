@@ -1,9 +1,9 @@
 //#region Import
 import cn from "@/utils/cn"
-import { Slot } from "@radix-ui/react-slot"
 import SvgSpinnersRingResize from "~icons/svg-spinners/ring-resize"
 import { cva, type VariantProps } from "class-variance-authority"
 import { forwardRef } from "react"
+import { Link } from "react-router-dom"
 //#endregion
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -37,21 +37,39 @@ export const buttonVariants = cva(
 	}
 )
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
-	asChild?: boolean
+type CommonTypes = {
+	/**
+	 * Boolean used if button is disabled
+	 */
+	disabled?: boolean
+
+	/**
+	 * Boolean used if an asychronous action is pending
+	 */
 	loading?: boolean
-}
+} & VariantProps<typeof buttonVariants>
+
+type ChildAsButtonProps = { as?: "button" } & React.ButtonHTMLAttributes<HTMLButtonElement>
+type ChildAsLinkProps = { as?: "link" } & React.ComponentPropsWithoutRef<typeof Link>
+
+export type ButtonProps = (ChildAsButtonProps | ChildAsLinkProps) & CommonTypes
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-	({ asChild = false, children, className, loading = false, size, variant, ...props }, ref) => {
-		const Comp = asChild ? Slot : "button"
+	({ as = "button", children, className, disabled, loading = false, size, variant, ...props }, ref) => {
+		const Comp = as === "link" ? Link : "button"
 
 		return (
-			<Comp className={cn(buttonVariants({ className, size, variant }))} ref={ref} {...props}>
+			<Comp
+				{...props}
+				className={cn(buttonVariants({ className, size, variant }))}
+				disabled={disabled || loading}
+				// eslint-disable-next-line
+				// @ts-ignore
+				ref={ref}>
 				{children}
 
 				{loading && (
-					<div className='absolute inset-[1px] z-10 !rounded-md bg-[rgba(255,255,255,0.7)] text-black backdrop-blur-md flex-center'>
+					<div className='absolute inset-0 z-10 h-full w-full bg-[rgba(255,255,255,0.7)] text-black backdrop-blur-xl flex-center'>
 						<SvgSpinnersRingResize className='text-current' />
 					</div>
 				)}

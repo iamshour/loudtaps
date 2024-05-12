@@ -1,4 +1,5 @@
 //#region Import
+import articlesReducer, { type ArticlesSliceState } from "@/features/articles/slice"
 import authReducer, { type AuthSliceState } from "@/features/auth/slice"
 import { combineReducers } from "@reduxjs/toolkit"
 import { persistReducer } from "redux-persist"
@@ -9,6 +10,7 @@ import storage from "redux-persist/lib/storage"
 const APP_PREFIX = "SHOURS_ARTICLES"
 
 export type RootState = {
+	articles: ArticlesSliceState
 	auth: AuthSliceState
 }
 
@@ -17,10 +19,11 @@ const rootPersistConfig = {
 	keyPrefix: APP_PREFIX,
 	storage,
 	version: 1,
-	whitelist: ["auth"] as Partial<keyof RootState>[],
+	whitelist: ["auth", "articles"] as Partial<keyof RootState>[],
 }
 
 const reducer = combineReducers({
+	articles: articlesReducer,
 	auth: authReducer,
 })
 

@@ -5,9 +5,11 @@ import AppLayout from "@/components/layouts/app-layout"
 import { lazy } from "react"
 import { Navigate, type RouteObject } from "react-router-dom"
 
-const ArticlesListRoute = lazy(() =>
-	import("@/features/articles").then(({ ArticlesListRoute }) => ({ default: ArticlesListRoute }))
-)
+const NewArticleRoute = lazy(() => import("@/features/articles/routes/new-article-route"))
+
+const ArticleRoute = lazy(() => import("@/features/articles/routes/article-route"))
+
+const ArticlesListRoute = lazy(() => import("@/features/articles/routes/articles-list-route"))
 //#endregion
 
 /**
@@ -19,6 +21,10 @@ const privateRoutes: RouteObject[] = [
 		element: <AppLayout />,
 		children: [
 			{ element: <ArticlesListRoute />, path: "/" },
+
+			{ element: <NewArticleRoute />, path: "article/new" },
+
+			{ element: <ArticleRoute />, path: "article/:articleId" },
 
 			// FALLBACK - Redirect to Home IF ROUTE DOES NOT EXIST
 			{ element: <Navigate to='/' />, path: "*" },

@@ -3,14 +3,20 @@ import Button from "@/components/ui/button"
 import Dropdown from "@/components/ui/dropdown"
 import LucideEllipsis from "~icons/lucide/ellipsis"
 import { twMerge } from "tailwind-merge"
+
+import DeleteArticleDialog from "./delete-article-dialog"
 //#endregion
 
 interface ArticleCardDropdownProps {
+	/**
+	 * Article Id use to manipulate an article
+	 */
+	articleId: string
+
 	className?: string
-	id: string
 }
 
-const ArticleCardDropdown = ({ className, id }: ArticleCardDropdownProps) => {
+const ArticleCardDropdown = ({ articleId, className }: ArticleCardDropdownProps) => {
 	return (
 		<Dropdown>
 			<Dropdown.Trigger asChild>
@@ -22,11 +28,13 @@ const ArticleCardDropdown = ({ className, id }: ArticleCardDropdownProps) => {
 				</Button>
 			</Dropdown.Trigger>
 			<Dropdown.Content align='end'>
-				<Dropdown.Item onClick={() => console.log(id)}>Edit</Dropdown.Item>
+				<Dropdown.Item onClick={() => console.log(articleId)}>Edit</Dropdown.Item>
 
 				<Dropdown.Separator />
 
-				<Dropdown.Item>Delete</Dropdown.Item>
+				<DeleteArticleDialog articleId={articleId}>
+					<Dropdown.Item>Delete</Dropdown.Item>
+				</DeleteArticleDialog>
 			</Dropdown.Content>
 		</Dropdown>
 	)
