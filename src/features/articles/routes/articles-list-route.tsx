@@ -11,15 +11,13 @@ const ArticlesListRoute = () => {
 	const articles = useSelector(selectArticles)
 
 	return (
-		<section className='relative h-full overflow-y-auto py-16' style={{ WebkitMaskBoxImage }}>
-			<Button
-				as='link'
-				className='absolute end-2 top-2 gap-2 bg-[#ff0f7b] text-white hover:bg-[#ff0f7b]/80'
-				size='sm'
-				to={"/article/new"}>
-				<LucideCirclePlus />
-				Create
-			</Button>
+		<section className='h-full overflow-y-auto py-16' style={{ WebkitMaskBoxImage }}>
+			<div className='absolute end-4 top-2 z-10 rounded-bl-lg bg-white p-4'>
+				<Button as='link' className='gap-2 bg-[#ff0f7b] text-white hover:bg-[#ff0f7b]/80' size='sm' to={"/article/new"}>
+					<LucideCirclePlus />
+					Create
+				</Button>
+			</div>
 
 			<div className='mx-auto flex h-full max-w-screen-xl flex-col gap-16 px-4 md:px-8'>
 				<div className='sm:mx-auto sm:max-w-md sm:text-center'>

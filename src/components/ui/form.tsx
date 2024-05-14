@@ -41,7 +41,8 @@ const FormField = <
 	</FormFieldContext.Provider>
 )
 
-const useFormField = () => {
+// eslint-disable-next-line react-refresh/only-export-components
+export const useFormField = () => {
 	const fieldContext = useContext(FormFieldContext)
 
 	const { formState, getFieldState } = useFormContext()
@@ -80,7 +81,7 @@ const FormItem = forwardRef<React.ElementRef<typeof Slot>, FormItemProps>(
 		return (
 			<div className={twMerge("flex w-full max-w-[340px] flex-col", className)}>
 				{!!label && (
-					<Label aria-invalid={!!error} htmlFor={formItemId}>
+					<Label aria-invalid={!!error} className='!pointer-events-auto' htmlFor={formItemId}>
 						{label}
 					</Label>
 				)}

@@ -1,9 +1,9 @@
+//#region Import
+import ArticleCreationForm from "../components/article-creation-form"
+//#endregion
+
 const NewArticleRoute = () => {
-	return (
-		<div>
-			<div>New Article Route</div>
-		</div>
-	)
+	return <ArticleCreationForm />
 }
 
 export default NewArticleRoute

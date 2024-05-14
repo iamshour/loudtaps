@@ -12,7 +12,7 @@ const AppLayout = () => (
 			<Topbar />
 		</Suspense>
 
-		<main className='h-full overflow-hidden rounded-xl bg-white px-2 py-2 shadow-md'>
+		<main className='relative h-full overflow-hidden rounded-xl bg-white px-2 py-2 shadow-md'>
 			<Suspense fallback={<Skeleton className='h-full rounded-xl' />}>
 				<Outlet />
 			</Suspense>
