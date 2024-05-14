@@ -36,7 +36,9 @@ const DeleteArticleDialog: React.FC<DeleteArticleDialogProps> = ({ articleId, ch
 				<AlertDialog.Footer>
 					<AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
 					<AlertDialog.Action asChild>
-						<Button onClick={onDeleteArticle}>Submit</Button>
+						<Button onClick={onDeleteArticle} variant='destructive'>
+							Yes, Delete
+						</Button>
 					</AlertDialog.Action>
 				</AlertDialog.Footer>
 			</AlertDialog.Content>

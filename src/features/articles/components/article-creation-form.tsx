@@ -22,8 +22,10 @@ const ArticleCreationForm = ({ defaultValues }: ArticleCreationFormProps) => {
 	})
 
 	const onSubmit = (data: ArticleSchemaType) => {
-		console.log(data)
+		console.log({ data })
 	}
+
+	console.log(form.formState.errors)
 
 	return (
 		<Form {...form}>
