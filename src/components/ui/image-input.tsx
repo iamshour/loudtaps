@@ -1,76 +1,60 @@
 //#region Import
 import IMAGE_MIME_TYPES from "@/features/articles/constants/image-mime-types"
 import { ArticleSchemaType } from "@/features/articles/schema/article-schema"
-import { useId } from "react"
-import { useFormContext } from "react-hook-form"
-import { twMerge } from "tailwind-merge"
+import { forwardRef, useId } from "react"
+import { ControllerRenderProps } from "react-hook-form"
 //#endregion
 
-type ImageInputProps = {
-	onChange: (file: File) => void
-
-	value: File
+interface ImageInputProps extends ControllerRenderProps<ArticleSchemaType, "image"> {
+	invalid?: boolean
 }
 
-const ImageInput = ({ onChange, value }: ImageInputProps) => {
+const ImageInput = forwardRef<HTMLInputElement, ImageInputProps>(({ invalid, onChange, value, ...props }, ref) => {
 	const formItemId = useId()
-
-	const { getFieldState } = useFormContext<ArticleSchemaType>()
-
-	const rhfError = getFieldState("image")?.error?.message
 
 	const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const files = e?.target?.files
 
 		if (!files) return
 
-		// field.onChange({ target: { name: field.name, value: files[0] } })
 		onChange(files[0])
 	}
 
 	return (
-		<div className='w-full max-w-[340px]'>
-			<div className='flex items-center'>
+		<div aria-invalid={invalid} className='group w-full max-w-[340px]'>
+			<div className='flex h-10 items-center overflow-hidden rounded-md ring-1 ring-indigo-500 group-aria-[invalid=true]:bg-red-500 group-aria-[invalid=true]:ring-red-500'>
 				<label
-					className={twMerge(
-						"h-9 cursor-pointer rounded-l-md border-0 bg-indigo-500 px-4 text-sm font-medium text-white flex-center transition-basic hover:bg-opacity-80",
-						rhfError && "border-red-500 bg-red-500"
-					)}
+					className='h-full cursor-pointer bg-indigo-500 px-4 text-sm font-medium text-white flex-center transition-basic hover:bg-opacity-80 group-aria-[invalid=true]:bg-red-500'
 					htmlFor={formItemId}>
 					Upload Image
 				</label>
 
-				<span
-					className={twMerge(
-						"h-9 flex-1 truncate rounded-r-md border border-indigo-400 bg-indigo-50 px-2 text-sm leading-[36px] text-indigo-800 text-opacity-70 transition-basic",
-						rhfError && "border-red-500 bg-red-50 text-red-800"
-					)}>
+				<span className='flex h-full flex-1 items-center truncate bg-indigo-50 px-2 text-sm leading-[36px] text-indigo-800 text-opacity-70 ring-1 ring-indigo-400 transition-basic group-aria-[invalid=true]:bg-red-50 group-aria-[invalid=true]:text-red-800'>
 					{!value ? "Upload an Image" : value?.name}
 				</span>
 			</div>
 
 			{value instanceof File && (
 				<div
-					className={twMerge(
-						`mt-1.5 h-32 w-full rounded-md border border-indigo-500 bg-cover bg-center bg-no-repeat`,
-						rhfError && "border-red-500"
-					)}
+					className='mt-1.5 h-32 w-full rounded-md bg-cover bg-center bg-no-repeat ring ring-indigo-500 group-aria-[invalid=true]:ring-red-500'
 					style={{ backgroundImage: `url(${URL.createObjectURL(value)})` }}
 				/>
 			)}
 
 			<input
+				{...props}
 				accept={IMAGE_MIME_TYPES.join(", ")}
 				className='hidden'
 				id={formItemId}
 				onChange={handleImageChange}
 				placeholder='Upload an image'
+				ref={ref}
 				type='file'
 			/>
-
-			{!!rhfError && <p className='ps-0.5 pt-0.5 text-xs font-medium text-red-500'>{String(rhfError)}</p>}
 		</div>
 	)
-}
+})
+
+ImageInput.displayName = "ImageInput"
 
 export default ImageInput

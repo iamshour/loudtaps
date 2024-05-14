@@ -1,7 +1,15 @@
 //#region Import
+
 import clsx from "clsx"
+import { memo } from "react"
+import ReactMarkdown from "react-markdown"
+import { PluggableList } from "react-markdown/lib"
 import { Link } from "react-router-dom"
-import * as runtime from "react/jsx-runtime"
+import rehypeAutolinkHeadings from "rehype-autolink-headings"
+import rehypeSlug from "rehype-slug"
+import remarkBreaks from "remark-breaks"
+import remarkGfm from "remark-gfm"
+import remarkMdx from "remark-mdx"
 //#endregion
 
 const sharedComponents = {
@@ -94,22 +102,20 @@ const sharedComponents = {
 	),
 }
 
-// parse the Velite generated MDX code into a React component function
-const useMDXComponent = (code: string) => {
-	const fn = new Function(code)
+const MDXContent = memo((props: React.ComponentPropsWithoutRef<typeof ReactMarkdown>) => {
+	return (
+		<ReactMarkdown
+			components={sharedComponents}
+			rehypePlugins={[
+				rehypeSlug,
+				[rehypeAutolinkHeadings, { properties: { ariaLabel: "Link to section", className: ["subheading-anchor"] } }],
+			]}
+			remarkPlugins={[remarkGfm, remarkMdx, remarkBreaks] as PluggableList}
+			{...props}
+		/>
+	)
+})
 
-	return fn({ ...runtime }).default
-}
-
-interface MdxProps {
-	code: string
-	components?: Record<string, React.ComponentType>
-}
-
-const MDXContent = ({ code, components }: MdxProps) => {
-	const Component = useMDXComponent(code)
-
-	return <Component components={{ ...sharedComponents, ...components }} />
-}
+MDXContent.displayName = "MDXContent"
 
 export default MDXContent

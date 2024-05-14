@@ -1,8 +1,10 @@
 //#region Import
+import MDXContent from "@/components/common/mdx-content"
 import NotFoundError from "@/components/common/notfound-error"
 import useSelector from "@/hooks/useSelector"
 import { useParams } from "react-router-dom"
 
+import ArticleHeader from "../components/article-header"
 import { selectArticleById } from "../slice"
 //#endregion
 
@@ -13,15 +15,15 @@ const ArticleRoute = () => {
 
 	if (!article?.content) return <NotFoundError />
 
-	return (
-		<div>
-			<div>Article Route</div>
+	console.log(article)
 
-			<div>
-				<h1>{article.title}</h1>
-				<p>{article.desc}</p>
-				<p>{article.content}</p>
-			</div>
+	return (
+		<div className='mx-auto w-full max-w-3xl p-4'>
+			<ArticleHeader {...article} />
+
+			<article className='prose-quoteless prose prose-zinc px-4 py-12'>
+				<MDXContent>{article.content}</MDXContent>
+			</article>
 		</div>
 	)
 }

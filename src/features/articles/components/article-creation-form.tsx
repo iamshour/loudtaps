@@ -1,5 +1,6 @@
 //#region Import
 import Button from "@/components/ui/button"
+import DateInput from "@/components/ui/date-input"
 import Form from "@/components/ui/form"
 import ImageInput from "@/components/ui/image-input"
 import Input from "@/components/ui/input"
@@ -25,7 +26,8 @@ const ArticleCreationForm = ({ defaultValues }: ArticleCreationFormProps) => {
 		console.log({ data })
 	}
 
-	console.log(form.formState.errors)
+	// console.log(form.formState.errors)
+	console.log(form.watch("content"))
 
 	return (
 		<Form {...form}>
@@ -35,22 +37,46 @@ const ArticleCreationForm = ({ defaultValues }: ArticleCreationFormProps) => {
 					Submit
 				</Button>
 
+				<div className='flex flex-wrap items-start gap-4'>
+					<Form.Field
+						control={form.control}
+						name='title'
+						render={({ field }) => (
+							<Form.Item label='Title'>
+								<Input placeholder="Type your article's title here..." {...field} />
+							</Form.Item>
+						)}
+					/>
+
+					<Form.Field
+						control={form.control}
+						name='image'
+						render={({ field, fieldState }) => (
+							<Form.Item label='Image'>
+								<ImageInput invalid={fieldState?.invalid} {...field} />
+							</Form.Item>
+						)}
+					/>
+
+					<Form.Field
+						control={form.control}
+						name='date'
+						render={({ field }) => (
+							<Form.Item label='Date'>
+								<DateInput {...field} />
+							</Form.Item>
+						)}
+					/>
+				</div>
+
 				<Form.Field
 					control={form.control}
-					name='title'
-					render={({ field }) => (
-						<Form.Item label='Title'>
-							<Input placeholder="Type your article's title here..." {...field} />
+					name='content'
+					render={({ field: { onChange, value }, fieldState }) => (
+						<Form.Item className='max-w-full flex-1' label='Content'>
+							<TipTapEditor invalid={fieldState?.invalid} onChange={onChange} value={value} />
 						</Form.Item>
 					)}
-				/>
-
-				<ImageInput onChange={(img) => form.setValue("image", img)} value={form.watch("image")} />
-
-				<TipTapEditor
-					content={form.getValues("content")}
-					errorMessage={form.getFieldState("content")?.error?.message}
-					onChange={(c) => form.setValue("content", c)}
 				/>
 			</form>
 		</Form>

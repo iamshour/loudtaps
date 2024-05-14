@@ -13,19 +13,19 @@ import { TipTapToolbar } from "./tiptap-toolbar"
 //#endregion
 
 interface TipTapEditorProps {
+	invalid?: boolean
+
+	onChange: (v: string) => void
+
 	/**
 	 * Default Value if available
 	 */
-	content?: string
-
-	errorMessage?: string
-
-	onChange: (v: string) => void
+	value?: string
 }
 
-export const TipTapEditor = ({ content, errorMessage, onChange }: TipTapEditorProps) => {
+export const TipTapEditor = ({ invalid, onChange, value }: TipTapEditorProps) => {
 	const editor = useEditor({
-		content,
+		content: value,
 		extensions,
 		onUpdate: ({ editor }) => onChange(editor.getHTML()),
 	})
@@ -33,19 +33,16 @@ export const TipTapEditor = ({ content, errorMessage, onChange }: TipTapEditorPr
 	if (!editor) return
 
 	return (
-		<div className='flex-1'>
-			<div
-				className={twMerge(
-					"flex h-full w-full flex-col gap-4 overflow-hidden rounded-md p-2 ring-1 ring-indigo-100 transition-basic focus-within:ring-2 focus-within:ring-indigo-500 md:row-span-2 [&>div:nth-of-type(2)>div]:h-full [&>div:nth-of-type(2)>div]:!outline-none [&>div:nth-of-type(2)]:flex-1",
-					errorMessage && "ring-red-500"
-				)}>
-				<TipTapToolbar editor={editor} />
+		<div
+			className={twMerge(
+				"flex h-full w-full flex-col gap-4 overflow-hidden rounded-md p-2 ring-1 ring-indigo-100 transition-basic focus-within:ring-2 focus-within:ring-indigo-500 md:row-span-2 [&>div:nth-of-type(2)>div]:h-full [&>div:nth-of-type(2)>div]:!outline-none [&>div:nth-of-type(2)]:flex-1",
+				invalid && "ring-red-500"
+			)}>
+			<TipTapToolbar editor={editor} />
 
-				<ErrorBoundary>
-					<EditorContent className='overflow-y-auto p-2' editor={editor} />
-				</ErrorBoundary>
-			</div>
-			{!!errorMessage && <p className='ps-0.5 pt-0.5 text-xs font-medium text-red-500'>{String(errorMessage)}</p>}
+			<ErrorBoundary>
+				<EditorContent className='overflow-y-auto p-2' editor={editor} />
+			</ErrorBoundary>
 		</div>
 	)
 }

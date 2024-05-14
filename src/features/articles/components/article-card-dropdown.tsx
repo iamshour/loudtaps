@@ -24,9 +24,13 @@ const ArticleCardDropdown = ({ articleId, className }: ArticleCardDropdownProps)
 		<Dropdown>
 			<Dropdown.Trigger asChild>
 				<Button
-					className={twMerge("h-7 rounded-md bg-white px-4 text-indigo-500 shadow-md hover:text-indigo-600", className)}
+					className={twMerge(
+						"text-indigo-500 opacity-70 hover:text-indigo-600 hover:opacity-100 data-[state=open]:opacity-100",
+						className
+					)}
 					size='icon'
-					variant='ghost'>
+					title='Options'
+					variant='outline'>
 					<LucideEllipsis className='shrink-0 text-xl' />
 				</Button>
 			</Dropdown.Trigger>

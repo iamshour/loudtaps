@@ -3,6 +3,7 @@ import AlertDialog from "@/components/ui/alert-dialog"
 import Button from "@/components/ui/button"
 import useDispatch from "@/hooks/useDispatch"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 import { deleteArticle } from "../slice"
 //#endregion
@@ -12,6 +13,8 @@ interface DeleteArticleDialogProps extends React.PropsWithChildren {
 }
 
 const DeleteArticleDialog: React.FC<DeleteArticleDialogProps> = ({ articleId, children }) => {
+	const navigate = useNavigate()
+
 	const dispatch = useDispatch()
 
 	const [open, setOpen] = useState(false)
@@ -20,6 +23,10 @@ const DeleteArticleDialog: React.FC<DeleteArticleDialogProps> = ({ articleId, ch
 		e.preventDefault()
 		dispatch(deleteArticle(articleId))
 		setOpen(false)
+
+		// In case we deleted an article from withing the article's page
+		// We have to navigate back home, or else we'll get to see a 404 page
+		navigate("/")
 	}
 
 	return (

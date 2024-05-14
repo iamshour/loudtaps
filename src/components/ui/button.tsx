@@ -8,7 +8,7 @@ import { Link } from "react-router-dom"
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const buttonVariants = cva(
-	"inline-flex-center relative overflow-hidden whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-slate-300",
+	"inline-flex-center relative overflow-hidden whitespace-nowrap rounded-md text-sm font-medium transition-basic focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-slate-300",
 	{
 		defaultVariants: {
 			size: "default",

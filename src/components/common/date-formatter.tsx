@@ -7,7 +7,11 @@ type Props = {
 }
 
 const DateFormatter = ({ dateString }: Props) => {
-	return <time dateTime={dateString}>{daysjs(dateString).format("LLLL	d, yyyy")}</time>
+	return (
+		<time className='text-sm tracking-wider text-gray-400' dateTime={dateString}>
+			{daysjs(dateString).format("dddd, MMMM D, YYYY")}
+		</time>
+	)
 }
 
 export default DateFormatter
