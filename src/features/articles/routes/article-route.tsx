@@ -2,10 +2,10 @@
 import MDXContent from "@/components/common/mdx-content"
 import NotFoundError from "@/components/common/notfound-error"
 import useSelector from "@/hooks/useSelector"
+import { selectArticleById } from "@/lib/redux/selectors"
 import { useParams } from "react-router-dom"
 
 import ArticleHeader from "../components/article-header"
-import { selectArticleById } from "../slice"
 //#endregion
 
 const ArticleRoute = () => {

@@ -1,12 +1,13 @@
 //#region Import
 import useSelector from "@/hooks/useSelector"
+import { selectAuthStatus } from "@/lib/redux/selectors"
 
 import LoginCard from "../components/login-card"
 import SignupCard from "../components/signup-card"
 //#endregion
 
 const AuthRoute = () => {
-	const { authStatus } = useSelector(({ auth }) => auth)
+	const authStatus = useSelector(selectAuthStatus)
 
 	return (
 		<div className='min-h-screen w-full lg:grid lg:grid-cols-2'>

@@ -4,17 +4,18 @@ import Form from "@/components/ui/form"
 import Input from "@/components/ui/input"
 import useDispatch from "@/hooks/useDispatch"
 import useSelector from "@/hooks/useSelector"
+import { selectUsers } from "@/lib/redux/selectors"
+import { registerUser, toggleAuthStatus } from "@/lib/redux/slice"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 
 import SignupSchema, { type SignupSchemaType } from "../schema/signup-schema"
-import { registerUser, toggleAuthStatus } from "../slice"
 //#endregion
 
 const SignupCard = () => {
 	const dispatch = useDispatch()
 
-	const { users } = useSelector(({ auth }) => auth)
+	const users = useSelector(selectUsers)
 
 	const form = useForm<SignupSchemaType>({
 		resolver: zodResolver(SignupSchema),

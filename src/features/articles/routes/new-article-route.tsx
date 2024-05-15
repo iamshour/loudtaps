@@ -1,5 +1,6 @@
 //#region Import
 import useDispatch from "@/hooks/useDispatch"
+import { addArticle } from "@/lib/redux/slice"
 import convertToBase64 from "@/utils/convert-to-base64"
 import toast from "react-hot-toast"
 import { useNavigate } from "react-router-dom"
@@ -7,7 +8,6 @@ import { v4 as newId } from "uuid"
 
 import ArticleCreationForm from "../components/article-creation-form"
 import { ArticleSchemaType } from "../schema/article-schema"
-import { addArticle } from "../slice"
 //#endregion
 
 const NewArticleRoute = () => {

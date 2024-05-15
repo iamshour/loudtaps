@@ -4,17 +4,18 @@ import Form from "@/components/ui/form"
 import Input from "@/components/ui/input"
 import useDispatch from "@/hooks/useDispatch"
 import useSelector from "@/hooks/useSelector"
+import { selectUsers } from "@/lib/redux/selectors"
+import { loginUser, toggleAuthStatus } from "@/lib/redux/slice"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 
 import LoginSchema, { type LoginSchemaType } from "../schema/login-schema"
-import { setCurrentSession, toggleAuthStatus } from "../slice"
 //#endregion
 
 const LoginCard = () => {
 	const dispatch = useDispatch()
 
-	const { users } = useSelector(({ auth }) => auth)
+	const users = useSelector(selectUsers)
 
 	const form = useForm<LoginSchemaType>({
 		resolver: zodResolver(LoginSchema),
@@ -24,7 +25,7 @@ const LoginCard = () => {
 		if (!data) return
 
 		// First, I'm going to check if user already exist in Mock users db (in local storage)
-		const userExist = users.find((entry) => entry.email === data.email)
+		const userExist = users.find((user) => user.email === data.email)
 
 		// First, if user doesn't exit, we'll display UI error below email/username input field
 		if (!userExist) return form.setError("email", { message: "User doesn't exist. Try another email/username" })
@@ -33,13 +34,7 @@ const LoginCard = () => {
 		if (userExist?.password !== data.password) return form.setError("password", { message: "Passwrod incorrect" })
 
 		// Else, adding user to current session / Signing in
-		dispatch(
-			setCurrentSession({
-				email: data.email,
-				firstName: userExist.firstName,
-				lastName: userExist.lastName,
-			})
-		)
+		dispatch(loginUser(data.email))
 	}
 
 	const goToSignupForm = () => dispatch(toggleAuthStatus("signup"))

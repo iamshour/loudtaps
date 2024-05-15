@@ -1,14 +1,14 @@
 //#region Import
 import Button from "@/components/ui/button"
 import useSelector from "@/hooks/useSelector"
+import { selectUserArticles } from "@/lib/redux/selectors"
 import LucideCirclePlus from "~icons/lucide/circle-plus"
 
 import ArticleCard from "../components/article-card"
-import { selectArticles } from "../slice"
 //#endregion
 
 const ArticlesListRoute = () => {
-	const articles = useSelector(selectArticles)
+	const articles = useSelector(selectUserArticles)
 
 	return (
 		<section className='h-full overflow-y-auto py-16' style={{ WebkitMaskBoxImage }}>

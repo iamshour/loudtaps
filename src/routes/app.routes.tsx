@@ -1,5 +1,6 @@
 //#region Import
 import useSelector from "@/hooks/useSelector"
+import { selectCurrentSession } from "@/lib/redux/selectors"
 import { useRoutes } from "react-router-dom"
 
 import privateRoutes from "./private.routes"
@@ -7,7 +8,7 @@ import publicRoutes from "./public.routes"
 //#endregion
 
 const AppRoutes = () => {
-	const currentSession = useSelector(({ auth }) => auth?.currentSession)
+	const currentSession = useSelector(selectCurrentSession)
 
 	const routes = currentSession ? privateRoutes : publicRoutes
 

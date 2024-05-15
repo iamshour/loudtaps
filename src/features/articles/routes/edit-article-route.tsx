@@ -2,6 +2,8 @@
 import NotFoundError from "@/components/common/notfound-error"
 import useDispatch from "@/hooks/useDispatch"
 import useSelector from "@/hooks/useSelector"
+import { selectArticleById } from "@/lib/redux/selectors"
+import { updateArticle } from "@/lib/redux/slice"
 import convertToBase64 from "@/utils/convert-to-base64"
 import toast from "react-hot-toast"
 import { useNavigate, useParams } from "react-router-dom"
@@ -9,7 +11,6 @@ import { useNavigate, useParams } from "react-router-dom"
 import type { ArticleSchemaType } from "../schema/article-schema"
 
 import ArticleCreationForm from "../components/article-creation-form"
-import { selectArticleById, updateArticle } from "../slice"
 //#endregion
 
 const EditArticleRoute = () => {

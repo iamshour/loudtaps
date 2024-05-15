@@ -1,6 +1,6 @@
 //#region Import
-import { setCurrentSession } from "@/features/auth/slice"
 import useDispatch from "@/hooks/useDispatch"
+import { signOutUser } from "@/lib/redux/slice"
 
 import Logo from "../common/logo"
 import Button from "../ui/button"
@@ -10,9 +10,7 @@ import Dropdown from "../ui/dropdown"
 const Topbar = () => {
 	const dispatch = useDispatch()
 
-	const signOut = () => {
-		dispatch(setCurrentSession(null))
-	}
+	const signOut = () => dispatch(signOutUser())
 
 	return (
 		<header className='flex h-16 items-center justify-between gap-4 rounded-lg bg-white p-4 shadow-sm'>

@@ -2,10 +2,9 @@
 import AlertDialog from "@/components/ui/alert-dialog"
 import Button from "@/components/ui/button"
 import useDispatch from "@/hooks/useDispatch"
+import { deleteArticle } from "@/lib/redux/slice"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-
-import { deleteArticle } from "../slice"
 //#endregion
 
 interface DeleteArticleDialogProps extends React.PropsWithChildren {
