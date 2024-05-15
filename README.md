@@ -1,40 +1,47 @@
-# Objective
+# Shours Articles
 
-Articles Management Web
-Application
-To demonstrate the candidate’s front-end development skills by creating a web
-application to manage articles creation and manipulation.
+a react SPA application used by users to write/store articles on the browser's local storage
 
-## Features & Functionalities
+## About the Project
 
-1. Implement signup/registration functionality by capturing the following user
-   details: First Name, Last Name, Username (Email) and Password.
-2. Implement login functionality.
-3. Only authenticated users should access the system.
-4. Provide ability to list all existing articles.
-5. Provide ability to add new article with the following details (using form):  
-   a. Title.  
-   b. Content.  
-   c. Date.  
-   d. Image:  
-   i.
-   Allow user to select an image file from local disk and display image
-   preview in the form.  
-   ii.
-   Image should be stored as Base64.  
-   iii. Image size : 4 MBs (max).
-6. Provide ability to edit/delete existing articles.
+A simple Web application that helps users add quick articles, whilst relying on the browser's storage
+as the main source (DB) to store their data
 
-## Notes
+## Prerequisites
 
-1. Use React.Js.
-2. Use Redux.
-3. The project should be runnable.
-4. Use the browser’s storage as the database for user registration, articles
-   details, images … etc.
-5. Implementation of unit tests is required.
-6. No 3rd party library allowed to be used to select the image and collect its
-   metadata.
-7. Text editor should be used to fill article’s content. Use any editor of your
-   choice.
-8. Upload the project source code to GitHub and share the link once completed.
+Make sure you have the following software installed on your machine:
+
+- [Node.js](https://nodejs.org/) (v14 or higher)
+- [pnpm](https://pnpm.io/) (if not installed, easiest way to install it locally is to run: `npm install -g pnpm` )
+
+## Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/iamshour/shours-articles
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   pnpm install
+   ```
+
+## Running the App
+
+To start the development server, run:
+
+```bash
+pnpm dev
+```
+
+The application will be available at <http://localhost:3000> by default.
+
+## Building the App
+
+To build the application for production, run:
+
+```bash
+pnpm build
+```
