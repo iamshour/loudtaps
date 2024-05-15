@@ -35,7 +35,7 @@ const ArticleCreationForm = ({ defaultValues, formType = "create-article", onSub
 	return (
 		<Form {...form}>
 			<form className='flex h-full flex-col gap-4 overflow-y-auto p-4' onSubmit={form.handleSubmit(onSubmit)}>
-				<Button className='gap-2 self-end bg-blue-500 text-white hover:bg-blue-500/80' size='sm' type='submit'>
+				<Button className='shrink-0 gap-2 self-end bg-blue-500 text-white hover:bg-blue-500/80' size='sm' type='submit'>
 					<LucideCheck />
 					{ctaButtonLabel[formType]}
 				</Button>

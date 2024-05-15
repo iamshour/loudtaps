@@ -59,7 +59,7 @@ const appSlice = createSlice({
 		registerUser: (state, { payload }: PayloadAction<Omit<User, "articles">>) => {
 			return {
 				...state,
-				users: [...state.users, { ...payload, articles: [] }],
+				users: [...state.users, { ...payload, articles: [], currentSession: true }],
 			}
 		},
 
