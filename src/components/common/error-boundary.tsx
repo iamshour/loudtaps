@@ -25,13 +25,11 @@ class ErrorBoundary extends Component<Props, State> {
 	}
 
 	public componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-		// eslint-disable-next-line no-console
 		console.error("Uncaught error:", error, errorInfo)
 	}
 
 	// Clearing Console when ErrorBoundary Component isn't mounted any more (ex. When used In Portals)
 	public componentWillUnmount(): void {
-		// eslint-disable-next-line no-console
 		console.clear()
 	}
 
