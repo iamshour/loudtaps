@@ -15,6 +15,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({ className, value, ...p
 			ref={ref}
 			value={value || ""}
 			{...props}
+			role='textbox'
 		/>
 	)
 })

@@ -15,13 +15,11 @@ const App = () => (
 	<ErrorBoundary>
 		<ReduxProvider store={reduxStore.store}>
 			<PersistGate loading={<AppLoader />} persistor={reduxStore.persistor}>
-				{/* <AuthPoviderContext> */}
 				<Router>
 					<AppRoutes />
 
 					<Toaster position='top-center' toastOptions={{ duration: 4000 }} />
 				</Router>
-				{/* </AuthPoviderContext> */}
 			</PersistGate>
 		</ReduxProvider>
 	</ErrorBoundary>

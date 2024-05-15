@@ -1,3 +1,6 @@
+/// <reference types="vitest" />
+/// <reference types="vite/client" />
+
 //#region Import
 import react from "@vitejs/plugin-react"
 import { FontaineTransform } from "fontaine"
@@ -43,4 +46,11 @@ export default defineConfig({
 	preview: { port: 3000 },
 	publicDir: "public",
 	server: { host: true, port: 3000 },
+
+	test: {
+		css: true,
+		environment: "jsdom",
+		globals: true,
+		setupFiles: "./src/setupTests.ts",
+	},
 })

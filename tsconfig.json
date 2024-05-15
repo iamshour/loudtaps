@@ -31,8 +31,8 @@
 			"@/public/*": ["./public/*"]
 		},
 
-		"types": ["unplugin-icons/types/react"]
+		"types": ["unplugin-icons/types/react", "@testing-library/react"]
 	},
-	"include": ["src"],
+	"include": ["src", "@testing-library/jest-dom"],
 	"exclude": ["dist", "build", "node_modules"]
 }
