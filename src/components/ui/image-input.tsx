@@ -10,8 +10,6 @@ interface ImageInputProps extends ControllerRenderProps<ArticleSchemaType, "imag
 }
 
 const ImageInput = forwardRef<HTMLInputElement, ImageInputProps>(({ invalid, onChange, value, ...props }, ref) => {
-	console.log(value)
-
 	const formItemId = useId()
 
 	const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
