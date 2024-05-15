@@ -1,1 +1,1 @@
-export type Article = Record<"articleId" | "content" | "date" | "desc" | "img" | "title", string>
+export type Article = Record<"articleId" | "content" | "date" | "desc" | "image" | "title", string>

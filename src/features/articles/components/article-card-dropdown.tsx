@@ -35,7 +35,7 @@ const ArticleCardDropdown = ({ articleId, className }: ArticleCardDropdownProps)
 				</Button>
 			</Dropdown.Trigger>
 			<Dropdown.Content align='end'>
-				<Dropdown.Item onClick={() => navigate(`article/edit/${articleId}`)}>Edit</Dropdown.Item>
+				<Dropdown.Item onClick={() => navigate(`/article/edit/${articleId}`)}>Edit</Dropdown.Item>
 
 				<Dropdown.Separator />
 

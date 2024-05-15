@@ -1,9 +1,41 @@
+//#region Import
+import NotFoundError from "@/components/common/notfound-error"
+import useDispatch from "@/hooks/useDispatch"
+import useSelector from "@/hooks/useSelector"
+import convertToBase64 from "@/utils/convert-to-base64"
+import toast from "react-hot-toast"
+import { useNavigate, useParams } from "react-router-dom"
+
+import type { ArticleSchemaType } from "../schema/article-schema"
+
+import ArticleCreationForm from "../components/article-creation-form"
+import { selectArticleById, updateArticle } from "../slice"
+//#endregion
+
 const EditArticleRoute = () => {
-	return (
-		<div>
-			<div>Edit Article Route</div>
-		</div>
-	)
+	const dispatch = useDispatch()
+
+	const navigate = useNavigate()
+
+	const { articleId } = useParams()
+
+	const article = useSelector(selectArticleById(articleId ?? ""))
+
+	if (!article?.content) return <NotFoundError />
+
+	const handleUpdate = async ({ image, ...rest }: ArticleSchemaType) => {
+		if (!articleId) return
+
+		const base64Image = await convertToBase64(image)
+
+		dispatch(updateArticle({ articleId, image: base64Image, ...rest }))
+
+		navigate("/")
+
+		toast.success("Article Updated successfully!")
+	}
+
+	return <ArticleCreationForm defaultValues={article as any} formType='edit-article' onSubmit={handleUpdate} />
 }
 
 export default EditArticleRoute

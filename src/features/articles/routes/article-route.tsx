@@ -15,8 +15,6 @@ const ArticleRoute = () => {
 
 	if (!article?.content) return <NotFoundError />
 
-	console.log(article)
-
 	return (
 		<div className='mx-auto w-full max-w-3xl p-4'>
 			<ArticleHeader {...article} />

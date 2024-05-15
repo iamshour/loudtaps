@@ -8,12 +8,13 @@ import type { Article } from "../types"
 import ArticleCardDropdown from "./article-card-dropdown"
 //#endregion
 
-const ArticleHeader = ({ articleId, date, desc, img, title }: Article) => (
+const ArticleHeader = ({ articleId, date, desc, image, title }: Article) => (
 	<header className='grid w-full gap-8'>
 		<div className='flex w-full items-center justify-between'>
 			<Button
 				as='link'
 				className='text-indigo-500 hover:text-indigo-600'
+				replace
 				size='icon'
 				title='Go back'
 				to='-1'
@@ -32,7 +33,7 @@ const ArticleHeader = ({ articleId, date, desc, img, title }: Article) => (
 
 			<div
 				className='mt-8 h-96 w-full rounded-md bg-cover bg-center bg-no-repeat'
-				style={{ backgroundImage: `url(${img})` }}
+				style={{ backgroundImage: `url(${image})` }}
 			/>
 		</div>
 	</header>

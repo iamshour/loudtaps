@@ -10,6 +10,8 @@ interface ImageInputProps extends ControllerRenderProps<ArticleSchemaType, "imag
 }
 
 const ImageInput = forwardRef<HTMLInputElement, ImageInputProps>(({ invalid, onChange, value, ...props }, ref) => {
+	console.log(value)
+
 	const formItemId = useId()
 
 	const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,12 +36,17 @@ const ImageInput = forwardRef<HTMLInputElement, ImageInputProps>(({ invalid, onC
 				</span>
 			</div>
 
-			{value instanceof File && (
-				<div
-					className='mt-1.5 h-32 w-full rounded-md bg-cover bg-center bg-no-repeat ring ring-indigo-500 group-aria-[invalid=true]:ring-red-500'
-					style={{ backgroundImage: `url(${URL.createObjectURL(value)})` }}
-				/>
-			)}
+			<div
+				className='mt-1.5 h-[115px] w-full rounded-md bg-cover bg-center bg-no-repeat ring-1 ring-gray-300 group-aria-[invalid=true]:ring-red-500'
+				style={{
+					backgroundImage:
+						value instanceof File
+							? `url(${URL.createObjectURL(value)})`
+							: typeof value === "string"
+								? `url(${value})`
+								: "url(/placeholder.png)",
+				}}
+			/>
 
 			<input
 				{...props}

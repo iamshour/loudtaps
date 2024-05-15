@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 //#region Import
 
 import clsx from "clsx"
@@ -65,7 +66,10 @@ const sharedComponents = {
 	ol: ({ className, ...props }: React.OlHTMLAttributes<HTMLOListElement>) => (
 		<ol className={clsx("my-6 ml-6 list-decimal", className)} {...props} />
 	),
-	p: ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
+
+	// eslint-disable-next-line
+	// @ts-ignore
+	p: ({ className, node, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
 		<p className={clsx("leading-7 [&:not(:first-child)]:mt-6", className)} {...props} />
 	),
 	pre: ({ className, ...props }: React.HTMLAttributes<HTMLPreElement>) => (

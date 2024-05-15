@@ -79,7 +79,7 @@ const FormItem = forwardRef<React.ElementRef<typeof Slot>, FormItemProps>(
 		const { error, formDescriptionId, formItemId, formMessageId } = useFormField()
 
 		return (
-			<div className={twMerge("flex w-full max-w-[340px] flex-col", className)}>
+			<div className={twMerge("flex w-[340px] max-w-full flex-col", className)}>
 				{!!label && (
 					<Label aria-invalid={!!error} className='!pointer-events-auto' htmlFor={formItemId}>
 						{label}
