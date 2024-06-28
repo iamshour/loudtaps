@@ -24,24 +24,27 @@ interface TipTapEditorProps {
 }
 
 export const TipTapEditor = ({ invalid, onChange, value }: TipTapEditorProps) => {
-	const editor = useEditor({
-		content: value,
-		extensions,
-		onUpdate: ({ editor }) => onChange(editor.getHTML()),
-	})
+	const editor = useEditor(
+		{
+			content: value || "",
+			extensions,
+			onUpdate: ({ editor }) => onChange(editor.getHTML() || ""),
+		}
+		// []
+	)
 
 	if (!editor) return
 
 	return (
 		<div
 			className={twMerge(
-				"flex h-full w-full flex-col gap-4 overflow-hidden rounded-md p-2 ring-1 ring-indigo-100 transition-basic focus-within:ring-2 focus-within:ring-indigo-500 md:row-span-2 [&>div:nth-of-type(2)>div]:h-full [&>div:nth-of-type(2)>div]:!outline-none [&>div:nth-of-type(2)]:flex-1",
+				"flex h-full w-full flex-col gap-4 overflow-hidden rounded-md p-2 ring-1 ring-inset ring-indigo-100 transition-basic focus-within:ring-2 focus-within:ring-indigo-500 md:row-span-2 [&>div:nth-of-type(2)>div]:h-full [&>div:nth-of-type(2)>div]:!outline-none [&>div:nth-of-type(2)]:flex-1",
 				invalid && "ring-red-500"
 			)}>
 			<TipTapToolbar editor={editor} />
 
 			<ErrorBoundary>
-				<EditorContent className='overflow-y-auto p-2' editor={editor} />
+				<EditorContent className='h-full overflow-y-auto overflow-x-hidden p-2' editor={editor} />
 			</ErrorBoundary>
 		</div>
 	)

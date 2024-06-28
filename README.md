@@ -45,3 +45,8 @@ To build the application for production, run:
 ```bash
 pnpm build
 ```
+
+### TODO
+
+- Article's Metadata
+- Article's Image Fix

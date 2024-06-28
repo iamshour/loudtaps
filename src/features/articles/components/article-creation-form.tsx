@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import LucideCheck from "~icons/lucide/check"
 import { useForm } from "react-hook-form"
 
+import CancelArticleDialog from "../dialogs/cancel-article-dialog"
 import ArticleSchema, { type ArticleSchemaType } from "../schema/article-schema"
 import { TipTapEditor } from "./tiptap-editor/tiptap-editor"
 //#endregion
@@ -34,11 +35,19 @@ const ArticleCreationForm = ({ defaultValues, formType = "create-article", onSub
 
 	return (
 		<Form {...form}>
-			<form className='flex h-full flex-col gap-4 overflow-y-auto p-4' onSubmit={form.handleSubmit(onSubmit)}>
-				<Button className='shrink-0 gap-2 self-end bg-blue-500 text-white hover:bg-blue-500/80' size='sm' type='submit'>
-					<LucideCheck />
-					{ctaButtonLabel[formType]}
-				</Button>
+			<form className='flex h-full flex-col gap-4 overflow-hidden p-4' onSubmit={form.handleSubmit(onSubmit)}>
+				<div className='flex items-center justify-end gap-2'>
+					<CancelArticleDialog>
+						<Button size='sm' type='reset'>
+							Cancel
+						</Button>
+					</CancelArticleDialog>
+
+					<Button className='shrink-0 gap-2 bg-blue-500 text-white hover:bg-blue-500/80' size='sm' type='submit'>
+						<LucideCheck />
+						{ctaButtonLabel[formType]}
+					</Button>
+				</div>
 
 				<div className='flex flex-wrap gap-6 md:flex-nowrap'>
 					<div className='flex w-full flex-1 flex-col gap-4'>
@@ -90,7 +99,7 @@ const ArticleCreationForm = ({ defaultValues, formType = "create-article", onSub
 					control={form.control}
 					name='content'
 					render={({ field: { onChange, value }, fieldState }) => (
-						<Form.Item className='w-full flex-1' label='Content'>
+						<Form.Item className='h-full w-full flex-1 overflow-hidden' label='Content'>
 							<TipTapEditor invalid={fieldState?.invalid} onChange={onChange} value={value} />
 						</Form.Item>
 					)}

@@ -4,7 +4,7 @@ import useSelector from "@/hooks/useSelector"
 import { selectUserArticles } from "@/lib/redux/selectors"
 import LucideCirclePlus from "~icons/lucide/circle-plus"
 
-import ArticleCard from "../components/article-card"
+import ArticleCard from "./article-card"
 //#endregion
 
 const ArticlesListRoute = () => {

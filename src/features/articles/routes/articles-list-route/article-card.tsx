@@ -2,9 +2,9 @@
 import DateFormatter from "@/components/common/date-formatter"
 import { Link } from "react-router-dom"
 
-import type { Article } from "../types"
+import type { Article } from "../../types"
 
-import ArticleCardDropdown from "./article-card-dropdown"
+import ArticleCardDropdown from "../../components/article-card-dropdown"
 //#endregion
 
 const ArticleCard = ({ articleId, date, desc, image, title }: Omit<Article, "content">) => (

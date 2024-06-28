@@ -5,7 +5,7 @@ import LucideEllipsis from "~icons/lucide/ellipsis"
 import { useNavigate } from "react-router-dom"
 import { twMerge } from "tailwind-merge"
 
-import DeleteArticleDialog from "./delete-article-dialog"
+import DeleteArticleDialog from "../dialogs/delete-article-dialog"
 //#endregion
 
 interface ArticleCardDropdownProps {

@@ -21,7 +21,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, React.TextareaHTMLAttributes<HT
 			ref={ref}
 			spellCheck={false}
 			{...props}
-			value={!ref ? props?.value || "" : props?.value}
+			value={props?.value || ""}
 		/>
 	)
 )
