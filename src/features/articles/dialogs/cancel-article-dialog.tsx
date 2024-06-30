@@ -3,7 +3,7 @@ import AlertDialog from "@/components/ui/alert-dialog"
 import Button from "@/components/ui/button"
 import { useLocation } from "react-router-dom"
 
-import type { ArticleFormType } from "../components/article-creation-form"
+import type { ArticleFormType } from "../components/article-creation-form/article-creation-form"
 //#endregion
 
 interface CancelArticleDialogProps extends React.PropsWithChildren {

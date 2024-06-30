@@ -51,6 +51,10 @@ const config: Config = {
 					to: { height: "0" },
 				},
 			},
+
+			screens: {
+				xs: "576px",
+			},
 		},
 	},
 }

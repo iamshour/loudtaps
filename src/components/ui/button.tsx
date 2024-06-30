@@ -8,7 +8,7 @@ import { Link } from "react-router-dom"
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const buttonVariants = cva(
-	"inline-flex-center relative overflow-hidden whitespace-nowrap rounded-md text-sm font-medium transition-basic focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-slate-300",
+	"inline-flex-center gap-1.5 xs:gap-2 relative overflow-hidden whitespace-nowrap rounded-md text-sm font-medium transition-basic focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:ring-slate-300 [&>svg]:shrink-0",
 	{
 		defaultVariants: {
 			size: "default",
@@ -70,7 +70,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
 				{loading && (
 					<div className='absolute inset-0 z-10 h-full w-full bg-[rgba(255,255,255,0.7)] text-black backdrop-blur-xl flex-center'>
-						<SvgSpinnersRingResize className='text-current' />
+						<SvgSpinnersRingResize className='shrink-0 text-current' />
 					</div>
 				)}
 			</Comp>

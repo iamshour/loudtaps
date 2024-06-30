@@ -10,7 +10,7 @@ import { useNavigate, useParams } from "react-router-dom"
 
 import type { ArticleSchemaType } from "../schema/article-schema"
 
-import ArticleCreationForm from "../components/article-creation-form"
+import ArticleCreationForm from "../components/article-creation-form/article-creation-form"
 //#endregion
 
 const EditArticleRoute = () => {

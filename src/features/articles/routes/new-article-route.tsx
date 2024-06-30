@@ -6,8 +6,9 @@ import toast from "react-hot-toast"
 import { useNavigate } from "react-router-dom"
 import { v4 as newId } from "uuid"
 
-import ArticleCreationForm from "../components/article-creation-form"
-import { ArticleSchemaType } from "../schema/article-schema"
+import type { ArticleSchemaType } from "../schema/article-schema"
+
+import ArticleCreationForm from "../components/article-creation-form/article-creation-form"
 //#endregion
 
 const NewArticleRoute = () => {

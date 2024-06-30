@@ -85,7 +85,7 @@ const DialogContent = ({
 
 				{withCloseBtn && (
 					<Close
-						className={`focus:ring-primary-500 absolute end-4 top-4 rounded-sm opacity-70 !outline-0 transition-basic hover:opacity-100 focus:ring-2 focus:ring-offset-2 
+						className={`absolute end-4 top-4 rounded-sm opacity-70 !outline-0 transition-basic hover:opacity-100 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 
 					disabled:pointer-events-none`}>
 						<RadixIconsCross2 className='h-4 w-4' />
 						<span className='sr-only'>Close Dialog</span>
