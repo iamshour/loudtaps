@@ -17,17 +17,17 @@ import { TipTapEditor } from "./tiptap-editor/tiptap-editor"
 /**
  * Custom type used in order to identify usage og this form: whether used for creating an article / or editing one
  */
-type FormType = "create-article" | "edit-article"
+export type ArticleFormType = "CREATE" | "UPDATE"
 
 interface ArticleCreationFormProps<T extends ArticleSchemaType = ArticleSchemaType> {
 	defaultValues?: T
 
-	formType?: FormType
+	formType?: ArticleFormType
 
 	onSubmit: (data: T) => void
 }
 
-const ArticleCreationForm = ({ defaultValues, formType = "create-article", onSubmit }: ArticleCreationFormProps) => {
+const ArticleCreationForm = ({ defaultValues, formType = "CREATE", onSubmit }: ArticleCreationFormProps) => {
 	const form = useForm<ArticleSchemaType>({
 		defaultValues,
 		resolver: zodResolver(ArticleSchema),
@@ -35,9 +35,9 @@ const ArticleCreationForm = ({ defaultValues, formType = "create-article", onSub
 
 	return (
 		<Form {...form}>
-			<form className='flex h-full flex-col gap-4 overflow-hidden p-4' onSubmit={form.handleSubmit(onSubmit)}>
+			<form className='flex h-full flex-col gap-4 overflow-hidden p-2' onSubmit={form.handleSubmit(onSubmit)}>
 				<div className='flex items-center justify-end gap-2'>
-					<CancelArticleDialog>
+					<CancelArticleDialog formtype={formType}>
 						<Button size='sm' type='reset'>
 							Cancel
 						</Button>
@@ -111,7 +111,7 @@ const ArticleCreationForm = ({ defaultValues, formType = "create-article", onSub
 
 export default ArticleCreationForm
 
-const ctaButtonLabel: Record<FormType, string> = {
-	"create-article": "Submit",
-	"edit-article": "Update",
+const ctaButtonLabel: Record<ArticleFormType, string> = {
+	CREATE: "Submit",
+	UPDATE: "Update",
 }

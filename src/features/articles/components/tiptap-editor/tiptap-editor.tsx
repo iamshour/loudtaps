@@ -24,14 +24,11 @@ interface TipTapEditorProps {
 }
 
 export const TipTapEditor = ({ invalid, onChange, value }: TipTapEditorProps) => {
-	const editor = useEditor(
-		{
-			content: value || "",
-			extensions,
-			onUpdate: ({ editor }) => onChange(editor.getHTML() || ""),
-		}
-		// []
-	)
+	const editor = useEditor({
+		content: value || "",
+		extensions,
+		onUpdate: ({ editor }) => onChange(editor.getHTML() || ""),
+	})
 
 	if (!editor) return
 

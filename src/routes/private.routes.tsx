@@ -9,7 +9,7 @@ const EditArticleRoute = lazy(() => import("@/features/articles/routes/edit-arti
 
 const NewArticleRoute = lazy(() => import("@/features/articles/routes/new-article-route"))
 
-const ArticleRoute = lazy(() => import("@/features/articles/routes/article-route/article-route"))
+const ArticleRoute = lazy(() => import("@/features/articles/routes/article-route"))
 
 const ArticlesListRoute = lazy(() => import("@/features/articles/routes/articles-list-route/articles-list-route"))
 //#endregion

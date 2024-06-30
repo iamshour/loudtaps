@@ -36,7 +36,7 @@ const EditArticleRoute = () => {
 		toast.success("Article Updated successfully!")
 	}
 
-	return <ArticleCreationForm defaultValues={article as any} formType='edit-article' onSubmit={handleUpdate} />
+	return <ArticleCreationForm defaultValues={article as any} formType='UPDATE' onSubmit={handleUpdate} />
 }
 
 export default EditArticleRoute

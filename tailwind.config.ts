@@ -24,6 +24,23 @@ const config: Config = {
 				"accordion-down": "accordion-down 0.2s ease-out",
 				"accordion-up": "accordion-up 0.2s ease-out",
 			},
+			colors: {
+				primary: {
+					100: "#5450E2",
+					200: "#433EE0",
+					300: "#322CDD",
+					400: "#2822D3",
+					50: "#6661E5",
+					500: "#251FC1",
+					600: "#211DAF",
+					700: "#1E1A9E",
+					800: "#1B178C",
+					900: "#17147B",
+					950: "#141169",
+					DEFAULT: "#141169",
+				},
+			},
+
 			keyframes: {
 				"accordion-down": {
 					from: { height: "0" },

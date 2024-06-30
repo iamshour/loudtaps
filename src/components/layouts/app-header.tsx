@@ -7,13 +7,13 @@ import Button from "../ui/button"
 import Dropdown from "../ui/dropdown"
 //#endregion
 
-const Topbar = () => {
+const AppHeader = () => {
 	const dispatch = useDispatch()
 
 	const signOut = () => dispatch(signOutUser())
 
 	return (
-		<header className='flex h-16 items-center justify-between gap-4 rounded-lg bg-white p-4 shadow-sm'>
+		<header className='flex items-center justify-between gap-2 rounded-lg bg-white p-2 shadow-sm sm:gap-3 sm:p-3'>
 			<Logo />
 
 			<Dropdown>
@@ -38,4 +38,4 @@ const Topbar = () => {
 	)
 }
 
-export default Topbar
+export default AppHeader
