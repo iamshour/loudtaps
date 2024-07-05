@@ -1,52 +1,60 @@
-# Shours Articles
+# LoudTaps
 
-a react SPA application used by users to write/store articles on the browser's local storage
+LoudTaps is a versatile platform that enables users worldwide to write and share articles on a wide range of topics. Whether you want to discuss politics, sports, poetry, literature, technology, or any other subject, LoudTaps is the place for you.
 
-## About the Project
+## Features
 
-A simple Web application that helps users add quick articles, whilst relying on the browser's storage
-as the main source (DB) to store their data
+- **Create Articles:** Write and publish articles on any topic.
+- **Attach Media:** Add images, PDFs, and other files to your articles.
+- **Explore Content:** Discover articles based on your favorite topics.
+- **Global Community:** Engage with a diverse and vibrant community of writers and readers.
 
-## Prerequisites
+## Getting Started
 
-Make sure you have the following software installed on your machine:
+To get started with LoudTaps, follow these steps:
 
-- [Node.js](https://nodejs.org/) (v14 or higher)
-- [pnpm](https://pnpm.io/) (if not installed, easiest way to install it locally is to run: `npm install -g pnpm` )
+1. **Register:** Create an account and select your favorite topics.
+2. **Create:** Start writing articles and attach any relevant media.
+3. **Share:** Publish your articles and share them with the community.
+4. **Explore:** Read articles written by others based on your interests.
 
 ## Installation
+
+To install and run LoudTaps locally:
 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/iamshour/shours-articles
+   git clone https://github.com/yourusername/loudtaps.git
    ```
 
-2. Install dependencies:
+2. Navigate to the project directory:
 
    ```bash
-   pnpm install
+   cd loudtaps
    ```
 
-## Running the App
+3. Install the dependencies:
 
-To start the development server, run:
+   ```bash
+   # Using pnpm as my package manager. You can use `npm` or `yarn` as well
+   pnpm instal
+   ```
 
-```bash
-pnpm dev
-```
+4. Start the development server:
 
-The application will be available at <http://localhost:3000> by default.
+   ```bash
+   pnpm dev
+   ```
 
-## Building the App
+## Contributing
 
-To build the application for production, run:
+We welcome contributions from the community. If you want to contribute, please fork the repository and create a pull request with your changes.
 
-```bash
-pnpm build
-```
+## License
 
-### TODO
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-- Article's Metadata
-- Article's Image Fix
+## Contact
+
+If you have any questions or feedback, feel free to contact us at <iamshour@outlook.com>.
