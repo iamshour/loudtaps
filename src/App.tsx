@@ -1,5 +1,6 @@
 //#region Import
 import reduxStore from "@/lib/redux/store"
+import { HelmetProvider } from "react-helmet-async"
 import { Toaster } from "react-hot-toast"
 import { Provider as ReduxProvider } from "react-redux"
 import { BrowserRouter as Router } from "react-router-dom"
@@ -15,11 +16,13 @@ const App = () => (
 	<ErrorBoundary>
 		<ReduxProvider store={reduxStore.store}>
 			<PersistGate loading={<AppLoader />} persistor={reduxStore.persistor}>
-				<Router>
-					<AppRoutes />
+				<HelmetProvider>
+					<Router>
+						<AppRoutes />
 
-					<Toaster position='top-center' toastOptions={{ duration: 4000 }} />
-				</Router>
+						<Toaster position='top-center' toastOptions={{ duration: 4000 }} />
+					</Router>
+				</HelmetProvider>
 			</PersistGate>
 		</ReduxProvider>
 	</ErrorBoundary>
