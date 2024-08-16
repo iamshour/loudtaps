@@ -1,1 +1,9 @@
-export type Article = Record<"articleId" | "content" | "date" | "desc" | "image" | "title", string>
+export interface Article {
+	content: string
+	createdAt: string
+	description: string
+	id: string
+	image: string
+	title: string
+	updatedAt: string
+}

@@ -41,7 +41,7 @@ const appSlice = createSlice({
 				if (user.currentSession)
 					return {
 						...user,
-						articles: user.articles.filter((article) => article.articleId !== payload),
+						articles: user.articles.filter(({ id }) => id !== payload),
 					}
 
 				return user
@@ -81,7 +81,7 @@ const appSlice = createSlice({
 					return {
 						...user,
 						articles: user?.articles.map((article) => {
-							if (article.articleId === payload.articleId) return payload
+							if (article.id === payload.id) return payload
 
 							return article
 						}),

@@ -8,10 +8,10 @@ import { useNavigate } from "react-router-dom"
 //#endregion
 
 interface DeleteArticleDialogProps extends React.PropsWithChildren {
-	articleId: string
+	id: string
 }
 
-const DeleteArticleDialog: React.FC<DeleteArticleDialogProps> = ({ articleId, children }) => {
+const DeleteArticleDialog: React.FC<DeleteArticleDialogProps> = ({ children, id }) => {
 	const navigate = useNavigate()
 
 	const dispatch = useDispatch()
@@ -20,7 +20,7 @@ const DeleteArticleDialog: React.FC<DeleteArticleDialogProps> = ({ articleId, ch
 
 	const onDeleteArticle = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		e.preventDefault()
-		dispatch(deleteArticle(articleId))
+		dispatch(deleteArticle(id))
 		setOpen(false)
 
 		// In case we deleted an article from withing the article's page

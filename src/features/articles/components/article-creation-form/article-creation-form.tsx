@@ -1,5 +1,4 @@
 //#region Import
-import DateInput from "@/components/ui/date-input"
 import Form from "@/components/ui/form"
 import ImageInput from "@/components/ui/image-input"
 import Input from "@/components/ui/input"
@@ -50,7 +49,7 @@ const ArticleCreationForm = ({ defaultValues, formType = "CREATE", onSubmit }: A
 
 						<Form.Field
 							control={form.control}
-							name='desc'
+							name='description'
 							render={({ field }) => (
 								<Form.Item className='' label='Description'>
 									<Textarea maxLength={500} placeholder='Add your description here' rows={7} {...field} />
@@ -60,16 +59,6 @@ const ArticleCreationForm = ({ defaultValues, formType = "CREATE", onSubmit }: A
 					</div>
 
 					<div className='flex w-full flex-col gap-4'>
-						<Form.Field
-							control={form.control}
-							name='date'
-							render={({ field }) => (
-								<Form.Item label='Date'>
-									<DateInput {...field} />
-								</Form.Item>
-							)}
-						/>
-
 						<Form.Field
 							control={form.control}
 							name='image'

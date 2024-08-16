@@ -9,15 +9,15 @@ import DeleteArticleDialog from "../dialogs/delete-article-dialog"
 //#endregion
 
 interface ArticleCardDropdownProps {
+	className?: string
+
 	/**
 	 * Article Id use to manipulate an article
 	 */
-	articleId: string
-
-	className?: string
+	id: string
 }
 
-const ArticleCardDropdown = ({ articleId, className }: ArticleCardDropdownProps) => {
+const ArticleCardDropdown = ({ className, id }: ArticleCardDropdownProps) => {
 	const navigate = useNavigate()
 
 	const { pathname } = useLocation()
@@ -37,13 +37,13 @@ const ArticleCardDropdown = ({ articleId, className }: ArticleCardDropdownProps)
 				</Button>
 			</Dropdown.Trigger>
 			<Dropdown.Content align='end'>
-				<Dropdown.Item onClick={() => navigate(`/article/edit/${articleId}`, { state: { from: pathname } })}>
+				<Dropdown.Item onClick={() => navigate(`/article/edit/${id}`, { state: { from: pathname } })}>
 					Edit
 				</Dropdown.Item>
 
 				<Dropdown.Separator />
 
-				<DeleteArticleDialog articleId={articleId}>
+				<DeleteArticleDialog id={id}>
 					<Dropdown.Item>Delete</Dropdown.Item>
 				</DeleteArticleDialog>
 			</Dropdown.Content>
